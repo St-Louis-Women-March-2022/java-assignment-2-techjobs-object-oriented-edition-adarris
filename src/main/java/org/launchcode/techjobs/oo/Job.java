@@ -50,7 +50,9 @@ public class Job {
     public String getName() {
         return name;
     }
-
+    public int getId(){
+        return id;
+    }
     public void setName(String name) {
         this.name = name;
     }
