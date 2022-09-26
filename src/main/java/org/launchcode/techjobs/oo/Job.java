@@ -48,7 +48,11 @@ public class Job {
     //  and id.
 
     public String getName() {
-        return name;
+        if (name != ""){
+            return name;
+        } else {
+            return "Data not available";
+        }
     }
     public int getId(){
         return id;
@@ -87,5 +91,14 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    public String toString(){
+        return "\n ID: " + getId() +
+                "\n Name: " + getName() +
+                "\n Employer: " + getEmployer() +
+                "\n Location: " + getLocation() +
+                "\n Position Type: " + getPositionType() +
+                "\n Core Competency: " + getCoreCompetency() + "\n";
     }
 }

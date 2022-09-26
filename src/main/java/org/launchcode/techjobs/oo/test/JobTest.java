@@ -22,7 +22,7 @@ public class JobTest {
     public void testJobConstructorSetsAllFields(){
         Job object_3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertTrue(object_3.getName() instanceof String);
-        System.out.println(object_3.getName().getClass());
+        //System.out.println(object_3.getName().getClass());
         assertTrue(object_3.getEmployer() instanceof Employer);
         assertTrue(object_3.getLocation() instanceof Location);
         assertTrue(object_3.getPositionType() instanceof PositionType);
@@ -40,6 +40,31 @@ public class JobTest {
         Job object_4 = new Job("Java Developer", new Employer("ADARRIS"), new Location("St. Louis"), new PositionType("Web developer"), new CoreCompetency("uhhhh"));
         Job object_5 = new Job("Java Developer", new Employer("ADARRIS"), new Location("St. Louis"), new PositionType("Web developer"), new CoreCompetency("uhhhh"));
 
-        assertFalse(object_4.getId() == object_5.getId());
+        assertFalse(object_4.equals(object_5));
+    }
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job object_6 = new Job();
+        assertEquals('\n', object_6.toString().charAt(0));
+        assertEquals('\n', object_6.toString().charAt(object_6.toString().length() -1));
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job object_7 = new Job("Java Developer", new Employer("ADARRIS"), new Location("St. Louis"), new PositionType("Web developer"), new CoreCompetency("uhhhh"));
+        assertTrue(object_7.toString().contains("Name: Java Developer"));
+        assertTrue(object_7.toString().contains("Employer: ADARRIS"));
+        assertTrue(object_7.toString().contains("Location: St. Louis"));
+        //System.out.println(object_7.toString());
+        assertTrue(object_7.toString().contains("Position Type: Web developer"));
+        assertTrue(object_7.toString().contains("Core Competency: uhhhh"));
+    }
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job object_8 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        assertTrue(object_8.toString().contains("Name: Data not available"));
+        assertTrue(object_8.toString().contains("Employer: Data not available"));
+        assertTrue(object_8.toString().contains("Location: Data not available"));
+        assertTrue(object_8.toString().contains("Position Type: Data not available"));
+        assertTrue(object_8.toString().contains("Core Competency: Data not available"));
     }
 }
